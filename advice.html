@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">  
+  <title>Frontend Mentor | Advice generator app</title>
+  <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+  <link href="https://fonts.google.com/specimen/Manrope" rel="stylesheet"/>
+  <link href="C:\Users\hp\Downloads\advice-generator-app-main\advice-generator-app-main\advice.css" rel="stylesheet" type="text/css"> 
+   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body{
+    background-color: rgb(33, 44, 58);
+    font-family: manrope, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .container{
+    background-color:rgba(128, 128, 128, 0.418);
+    width: 70%;
+    height:50%;
+    margin-top: 10%;
+    margin-left: 25%; 
+    align-items: center;
+    border-radius: 2rem;
+  }
+
+  .quote{
+    margin-top: 10%;
+    font-family: Manrope, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: hsl(193, 38%, 86%);
+    text-align: center;
+    word-wrap: break-word;
+    font-weight: 800;
+  }
+  .id{
+    padding-top: 20%;
+    font-family: manrope, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-left: 40%;
+    color:hsl(150, 100%, 66%)
+
+  }
+    @media all and (max-width: 1440px){
+      .container{
+        width: 50%;
+        height: 50%;
+      }
+      .quote{
+        margin-top: 5%;      
+      }
+      .id{
+    padding-top: 10%;
+      }
+      
+    }
+    @media all and (min-width: 375px){
+        .container{
+        width: 50%;
+        height: 50%;
+
+      }
+     
+    }
+    p{
+      margin-left: 45%;
+      padding-top: -100%;
+    }
+     
+    #reload{
+        text-align: center;
+        margin-left: 50%;
+        margin-bottom: 30%;
+        margin-top: 10%
+      }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h3 class="id"></h3><!-- Advice ID goes here -->
+  <h1 class="quote"></h1><!-- Advice text goes here -->
+  <p id="p">Click the Dice</p>
+  <button id="reload"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><path d="M20 0H4a4.005 4.005 0 0 0-4 4v16a4.005 4.005 0 0 0 4 4h16a4.005 4.005 0 0 0 4-4V4a4.005 4.005 0 0 0-4-4ZM7.5 18a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm4.5 4.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm0-9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" fill="#202733">Click me</svg></button>
+  </div>
+  <script>
+      var reload = document.querySelector("#reload")
+      var quote = `https://api.adviceslip.com/advice`
+      reload.addEventListener("click", function(){
+        var P =  document.querySelector("#p")
+        p.style.display = "none"
+        fetch(quote)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data)
+        const id = data.slip.id
+        const slip = data.slip.advice
+        document.querySelector(".quote").innerHTML = `"${slip}"`;
+        document.querySelector(".id").innerHTML = `Advice #${id}`;
+      })
+    })
+</script>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">1teoluwa</a>.
+     </div>
+  </body>
+</html>
